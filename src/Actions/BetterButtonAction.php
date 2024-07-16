@@ -77,7 +77,7 @@ class BetterButtonAction extends LiteralField implements BetterButtonInterface
     {
         $raw = $this->buttonName ?: $this->getButtonText();
 
-        return preg_replace('/[^a-z0-9-_]/', '', strtolower($this->getButtonText()));
+        return $raw ? preg_replace('/[^a-z0-9-_]/', '', strtolower($raw)) : '';
     }
 
     /**
@@ -161,7 +161,7 @@ class BetterButtonAction extends LiteralField implements BetterButtonInterface
      * @param array $attributes
      * @return SSViewer
      */
-    public function FieldHolder($attributes = array ())
+    public function FieldHolder($attributes = array())
     {
         if ($this->shouldDisplay()) {
             $this->setContent($this->getButtonHTML());

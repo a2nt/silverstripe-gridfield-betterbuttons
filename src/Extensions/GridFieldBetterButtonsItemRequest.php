@@ -108,7 +108,7 @@ class GridFieldBetterButtonsItemRequest extends DataExtension
      */
     public function updateItemEditForm($form)
     {
-        if ($this->owner->record->stat('better_buttons_enabled') !== true) {
+        if ($this->owner->record->config()->get('better_buttons_enabled') !== true) {
             return false;
         }
         Requirements::css(BETTER_BUTTONS_DIR.'/css/gridfield_betterbuttons.css');
@@ -526,7 +526,7 @@ class GridFieldBetterButtonsItemRequest extends DataExtension
     {
         $map = $this->owner->gridField->getManipulatedList()->limit(PHP_INT_MAX, 0)->column('ID');
         $offset = array_search($this->owner->record->ID, $map);
-        return isset($map[$offset-1]) ? $map[$offset-1] : false;
+        return isset($map[$offset - 1]) ? $map[$offset - 1] : false;
     }
 
     /**
@@ -543,7 +543,7 @@ class GridFieldBetterButtonsItemRequest extends DataExtension
         // If there are a million results and they were paginated, this is going to be slow now
         // TODO: Search in the paginated list only somehow (grab the limit + offset and search from there?)
         $offset = array_search($this->owner->record->ID, $map);
-        return isset($map[$offset+1]) ? $map[$offset+1] : false;
+        return isset($map[$offset + 1]) ? $map[$offset + 1] : false;
     }
 
     /**
